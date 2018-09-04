@@ -2,19 +2,21 @@ package tngusmiso.videoeditor;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
 
 public class TimelinePanel extends JPanel{
-	private JLabel videoLabel;
-	private JLabel textLabel;
-	private JLabel musicLabel;
+	private JTable timelineTable;
 	
 	public TimelinePanel() {
-		videoLabel =new JLabel("video");
-		textLabel = new JLabel("text");
-		musicLabel = new JLabel("music");
+		setBackground(Color.gray);
+
+		DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"Stuff","Stuff"},0);
+			tableModel.addRow(new Object[] {"video"});
+			tableModel.addRow(new Object[] {"text"});
+			tableModel.addRow(new Object[] {"music"});
 		
-		add(videoLabel);
-		add(textLabel);
-		add(musicLabel);
+			timelineTable = new JTable(tableModel);
+		
+		add(timelineTable);
 	}
 }
