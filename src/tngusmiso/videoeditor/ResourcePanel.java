@@ -44,12 +44,26 @@ public class ResourcePanel extends JPanel{
 					fp.ChooseFiles();
 				}
 			});
+			
+			removeButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					removeListMember();
+				}
+			});
 		}
 	}
 	
 	public void addListMember(File file) {
 		int pos = resourceList.getModel().getSize();
 		model.add(pos, file.getName());
+	}
+	public void removeListMember() {
+		int res = resourceList.getSelectedIndex();
+		if(res<0) {
+			JOptionPane.showMessageDialog(null,"제거할 리소스를 선택하세.","경고",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		model.removeElementAt(res);
 	}
 	
 }
