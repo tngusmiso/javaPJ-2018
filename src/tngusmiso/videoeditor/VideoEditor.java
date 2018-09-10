@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class VideoEditor extends JFrame{
 	
-	private JPanel toolBar;
-	private JPanel videoView;
-	private JPanel resourceView;
-	private JPanel timelineView;
+	public static JPanel toolBar;
+	public static PreviewPanel videoView;
+	public static ResourcePanel resourceView;
+	public static TimelinePanel timelineView;
 	
 	public VideoEditor() {
 		setTitle("Video Editor");

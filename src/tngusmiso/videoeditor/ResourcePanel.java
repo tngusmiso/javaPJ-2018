@@ -3,17 +3,19 @@ package tngusmiso.videoeditor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class ResourcePanel extends JPanel{
 	private ButtonPanel buttonPanel;
 	private JList<String> resourceList;
 	private JScrollPane scrollPane;
+	private DefaultListModel model;
 	
 	public ResourcePanel() {
 		this.setLayout(new BorderLayout());
 		buttonPanel = new ButtonPanel();
-		String exStr[] = {"예시1","예시2","예시3"};
-		resourceList = new JList<String>(exStr);
+		model= new DefaultListModel();
+		resourceList = new JList<String>(model);;
 		resourceList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		scrollPane = new JScrollPane(resourceList);
@@ -43,6 +45,11 @@ public class ResourcePanel extends JPanel{
 				}
 			});
 		}
+	}
+	
+	public void addListMember(File file) {
+		int pos = resourceList.getModel().getSize();
+		model.add(pos, file.getName());
 	}
 	
 }

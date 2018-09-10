@@ -10,15 +10,12 @@ public class FilePicker {
 	private JFileChooser fc;
 	private FileNameExtensionFilter audioFilter;
 	private FileNameExtensionFilter videoFilter;
-	private FileNameExtensionFilter imageFilter;	
-	private String filePath;
-	
+	private FileNameExtensionFilter imageFilter;
 	public FilePicker(){
 		fc = new JFileChooser();
 		audioFilter = new FileNameExtensionFilter("audio", "mp3", "wav");
 		videoFilter = new FileNameExtensionFilter("video","mp4", "mpg", "mpeg", "avi", "mkv");
 		imageFilter = new FileNameExtensionFilter("images", "bmp", "png", "gif", "jpg", "jpeg");
-		filePath = null;
 	}
 	
 	public void ChooseFiles() {
@@ -32,13 +29,6 @@ public class FilePicker {
 			JOptionPane.showMessageDialog(null,"파일을 선택하지 않았습니다.","경고",JOptionPane.WARNING_MESSAGE);
 			return;
 		}
-		else {
-			filePath = fc.getSelectedFile().getPath();
-		}
+		VideoEditor.resourceView.addListMember(fc.getSelectedFile());
 	}
-     
-	public String getFilePath() {
-		return filePath;
-	}
-
 }
