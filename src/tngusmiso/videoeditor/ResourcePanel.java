@@ -2,6 +2,7 @@ package tngusmiso.videoeditor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class ResourcePanel extends JPanel{
 	private ButtonPanel buttonPanel;
@@ -34,6 +35,14 @@ public class ResourcePanel extends JPanel{
 			add(label);
 			add(addButton);
 			add(removeButton);
+			
+			addButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					FilePicker fp = new FilePicker();
+					fp.ChooseFiles();
+				}
+			});
 		}
 	}
+	
 }
