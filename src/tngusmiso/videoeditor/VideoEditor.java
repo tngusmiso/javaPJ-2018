@@ -12,6 +12,7 @@ public class VideoEditor extends JFrame{
 	
 	public VideoEditor() {
 		setTitle("Video Editor");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Container ve = getContentPane();
 		ve.setLayout(new BorderLayout());
