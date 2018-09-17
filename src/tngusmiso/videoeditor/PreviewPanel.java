@@ -1,54 +1,28 @@
 package tngusmiso.videoeditor;
 
-import javax.swing.*;
-import java.awt.*;
 
-public class PreviewPanel extends JPanel{
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
-	private PlayerPanel playerPanel;
-	private VideoPanel videoPanel;
-	
-	public PreviewPanel() {
-		this.setLayout(new BorderLayout());
+public class PreviewPanel extends BorderPane{
 
-		videoPanel = new VideoPanel();		
-		playerPanel = new PlayerPanel();
-		
-		add(videoPanel, BorderLayout.CENTER);
-		add(playerPanel, BorderLayout.SOUTH);
-		
-	}
+	Media media;
+	MediaPlayer player;
+	MediaView view;
+	Pane mpane;
 	
-	private class VideoPanel extends JPanel{
-		private JLabel vLabel;
+	public PreviewPanel (String file) {
+		media = new Media(file);
+		player = new MediaPlayer(media);
+		view = new MediaView(player);
+		mpane = new Pane();
 		
-		private VideoPanel() {
-			setBackground(Color.black);
-			vLabel = new JLabel("video area");
-			add(vLabel);
-		}
-	}
-	
-	private class PlayerPanel extends JPanel{
-		private JButton playButton;
-		private JButton pauseButton;
-		private JLabel currentTimeLabel;
-		private JLabel leftTimeLabel;
-		private JSlider timeSlider;	
+		mpane.getChildren().add(view);
 		
-		private PlayerPanel() {
-			setBackground(Color.white);
-			playButton = new JButton("paly");
-			pauseButton = new JButton("pause");
-			currentTimeLabel = new JLabel("1:00");
-			leftTimeLabel = new JLabel("/ 3:00");
-			timeSlider = new JSlider();
-			
-			add(playButton);
-			add(pauseButton);
-			add(currentTimeLabel);
-			add(leftTimeLabel);
-			add(timeSlider);
-		}
+		setCenter(mpane);
+		
+		player.play();
 	}
 }
