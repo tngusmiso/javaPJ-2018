@@ -82,6 +82,11 @@ public class ResourcePanel extends JPanel{
 			return;
 		}
 		model.removeElementAt(resIdx);
+		fileArray.remove(resIdx);
+	}
+	
+	public File getFileArray(){
+		return fileArray.get(0);
 	}
 	
 }

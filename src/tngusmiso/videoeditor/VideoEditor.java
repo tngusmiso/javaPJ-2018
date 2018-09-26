@@ -21,7 +21,7 @@ public class VideoEditor extends JFrame{
 		resourceView = new ResourcePanel();
 		timelineView = new TimelinePanel();
 		
-		ve.add(videoView, BorderLayout.CENTER);
+		//ve.add(videoView, BorderLayout.CENTER);
 		ve.add(resourceView, BorderLayout.EAST);
 		ve.add(timelineView, BorderLayout.SOUTH);
 

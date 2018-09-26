@@ -2,53 +2,66 @@ package tngusmiso.videoeditor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class PreviewPanel extends JPanel{
+import javax.media.*;
 
-	private PlayerPanel playerPanel;
+public class PreviewPanel extends JFrame{
 	private VideoPanel videoPanel;
 	
 	public PreviewPanel() {
 		this.setLayout(new BorderLayout());
 
-		videoPanel = new VideoPanel();		
-		playerPanel = new PlayerPanel();
+		videoPanel = new VideoPanel();
 		
 		add(videoPanel, BorderLayout.CENTER);
-		add(playerPanel, BorderLayout.SOUTH);
 		
 	}
 	
 	private class VideoPanel extends JPanel{
-		private JLabel vLabel;
+		private Player player;
+		private File file;
 		
 		private VideoPanel() {
-			setBackground(Color.black);
-			vLabel = new JLabel("video area");
-			add(vLabel);
+			file = VideoEditor.resourceView.getFileArray();
+			createPlayer();
 		}
-	}
-	
-	private class PlayerPanel extends JPanel{
-		private JButton playButton;
-		private JButton pauseButton;
-		private JLabel currentTimeLabel;
-		private JLabel leftTimeLabel;
-		private JSlider timeSlider;	
 		
-		private PlayerPanel() {
-			setBackground(Color.white);
-			playButton = new JButton("paly");
-			pauseButton = new JButton("pause");
-			currentTimeLabel = new JLabel("1:00");
-			leftTimeLabel = new JLabel("/ 3:00");
-			timeSlider = new JSlider();
+		private void createPlayer() {
+			if ( file == null )
+		         return;
+			removePreviousPlayer();
 			
-			add(playButton);
-			add(pauseButton);
-			add(currentTimeLabel);
-			add(leftTimeLabel);
-			add(timeSlider);
+			try {
+				// create a new player and add listener
+				player = Manager.createPlayer( file.toURL() );
+				player.start();  // start player
+			}
+			catch ( Exception e ){
+				JOptionPane.showMessageDialog( this,
+	            "Invalid file or location", "Error loading file",
+	            JOptionPane.ERROR_MESSAGE );
+			}
 		}
+		
+		private void removePreviousPlayer(){
+		      if ( player == null )
+		         return;
+		 
+		      player.close();
+		 
+		      Component visual = player.getVisualComponent();
+		      Component control = player.getControlPanelComponent();
+		 
+		      Container c = getContentPane();
+		      
+		      if ( visual != null ) 
+		         c.remove( visual );
+		 
+		      if ( control != null ) 
+		         c.remove( control );
+		  }
 	}
 }
