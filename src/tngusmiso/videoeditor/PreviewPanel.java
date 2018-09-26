@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.media.*;
 
-public class PreviewPanel extends JFrame{
+public class PreviewPanel extends JPanel{
 	private VideoPanel videoPanel;
 	
 	public PreviewPanel() {
@@ -61,7 +61,7 @@ public class PreviewPanel extends JFrame{
 		      Component visual = player.getVisualComponent();
 		      Component control = player.getControlPanelComponent();
 		 
-		      Container c = getContentPane();
+		      Container c = getRootPane();
 		      
 		      if ( visual != null ) 
 		         c.remove( visual );
