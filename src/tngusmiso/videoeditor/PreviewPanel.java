@@ -10,18 +10,22 @@ import javax.media.*;
 
 public class PreviewPanel extends JPanel{
 	private VideoPanel videoPanel;
+	private ControllerPanel controllerPanel;
 	
 	public PreviewPanel() {
 		this.setLayout(new BorderLayout());
 
 		videoPanel = new VideoPanel();
+		controllerPanel = new ControllerPanel();
 		
 		add(videoPanel, BorderLayout.CENTER);
+		add(controllerPanel, BorderLayout.SOUTH);
 		
 	}
 	
 	private class VideoPanel extends JPanel{
 		private Player player;
+		private Component controller;
 		private File file;
 		
 		private VideoPanel() {
@@ -43,6 +47,7 @@ public class PreviewPanel extends JPanel{
 			try {
 				// create a new player and add listener
 				player = Manager.createPlayer( file.toURL() );
+				controller = player.getControlPanelComponent();
 				player.start();  // start player
 			}
 			catch ( Exception e ){
@@ -69,5 +74,21 @@ public class PreviewPanel extends JPanel{
 		      if ( control != null ) 
 		         c.remove( control );
 		  }
+	}
+	
+	private class ControllerPanel extends JPanel{
+		private JButton playButton;
+		private JLabel timeLabel;
+		private JSlider timeSlider;
+		
+		private ControllerPanel() {
+			playButton = new JButton("play");
+			timeLabel = new JLabel("1:00 / 3:00");
+			timeSlider = new JSlider();
+			
+			add(playButton);
+			add(timeLabel);
+			add(timeSlider);
+		}
 	}
 }
