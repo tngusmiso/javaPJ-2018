@@ -84,8 +84,8 @@ public class ResourcePanel extends JPanel{
 		fileArrayList.remove(resIdx);
 	}
 	
-	public File getFileArrayList(){
-		return fileArrayList.get(0);
+	public ArrayList<File> getFileArrayList(){
+		return fileArrayList;
 	}
 	
 }
