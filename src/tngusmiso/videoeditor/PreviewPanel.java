@@ -25,11 +25,11 @@ public class PreviewPanel extends JFrame{
 		private File file;
 		
 		private VideoPanel() {
-			if(VideoEditor.resourceView.getFileArrayList() != null) {
+			try {
 				file = VideoEditor.resourceView.getFileArrayList().get(0);
 				createPlayer();
 			}
-			else {
+			catch (Exception e) {
 				JLabel label = new JLabel("재생할 파일이 없습니다.");
 				add(label);
 			}
