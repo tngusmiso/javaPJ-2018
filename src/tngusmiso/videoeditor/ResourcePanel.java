@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ResourcePanel extends JPanel{
 	
-	public ArrayList<File> fileArray;	// filChooser에서 선택한 File객체 저장하는 ArrayList
+	public ArrayList<File> fileArrayList;	// filChooser에서 선택한 File객체 저장하는 ArrayList
 	
 	private ButtonPanel buttonPanel;	// add button, remove button 배치되어 있는 Pannel
 	private JList<String> resourceList;	// fileArray에 저장된 객체들의 이름만 보여주는 리스트
@@ -20,7 +20,7 @@ public class ResourcePanel extends JPanel{
 	public ResourcePanel() {
 		this.setLayout(new BorderLayout());	
 		
-		fileArray = new ArrayList();
+		fileArrayList = new ArrayList();
 		
 		buttonPanel = new ButtonPanel();
 		model= new DefaultListModel();
@@ -51,7 +51,6 @@ public class ResourcePanel extends JPanel{
 			addButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					FilePicker fp = new FilePicker();
-					fp.ChooseFiles();
 				}
 			});
 			
@@ -65,7 +64,7 @@ public class ResourcePanel extends JPanel{
 	
 	//fileChooser에서 파일을 열면 호출되는 함수.
 	public void addListMember(File file) {
-		fileArray.add(file);	//fileArray에 File객체 저장 
+		fileArrayList.add(file);	//fileArrayList에 File객체 저장 
 		int pos = resourceList.getModel().getSize();
 		model.add(pos, file.getName());		//model에는 파일명만 저장 
 	}
@@ -82,11 +81,11 @@ public class ResourcePanel extends JPanel{
 			return;
 		}
 		model.removeElementAt(resIdx);
-		fileArray.remove(resIdx);
+		fileArrayList.remove(resIdx);
 	}
 	
-	public File getFileArray(){
-		return fileArray.get(0);
+	public File getFileArrayList(){
+		return fileArrayList.get(0);
 	}
 	
 }

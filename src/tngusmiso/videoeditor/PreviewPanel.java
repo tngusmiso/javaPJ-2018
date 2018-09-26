@@ -25,7 +25,7 @@ public class PreviewPanel extends JFrame{
 		private File file;
 		
 		private VideoPanel() {
-			file = VideoEditor.resourceView.getFileArray();
+			file = VideoEditor.resourceView.getFileArrayList();
 			createPlayer();
 		}
 		
