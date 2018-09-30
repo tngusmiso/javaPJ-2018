@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.media.*;
@@ -13,7 +14,7 @@ import javax.media.*;
 public class PreviewPanel extends JPanel{
 	private VideoPanel videoPanel;
 	private ControllerPanel controllerPanel;
-	
+
 	public PreviewPanel() {
 		this.setLayout(new BorderLayout());
 
@@ -27,8 +28,8 @@ public class PreviewPanel extends JPanel{
 	
 	private class VideoPanel extends JPanel{
 		private Player player;
-		private Component controller;
 		private File file;
+		private URL fileURL;
 		
 		private VideoPanel() {
 			try {
@@ -46,8 +47,7 @@ public class PreviewPanel extends JPanel{
 			
 			try {
 				// create a new player and add listener
-				player = Manager.createPlayer( file.toURI().toURL() );
-				controller = player.getControlPanelComponent();
+				player = Manager.createRealizedPlayer( file.toURL() );
 				player.start();  // start player
 			}
 			catch ( Exception e ){
