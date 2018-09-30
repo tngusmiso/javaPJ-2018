@@ -47,7 +47,7 @@ public class PreviewPanel extends JPanel{
 			
 			try {
 				// create a new player and add listener
-				player = Manager.createRealizedPlayer( file.toURL() );
+				player = Manager.createRealizedPlayer( file.toURI().toURL());
 				player.start();  // start player
 			}
 			catch ( Exception e ){
@@ -66,13 +66,9 @@ public class PreviewPanel extends JPanel{
 		      Component visual = player.getVisualComponent();
 		      Component control = player.getControlPanelComponent();
 		 
-		      Container c = getRootPane();
-		      
-		      if ( visual != null ) 
-		         c.remove( visual );
+		      if ( visual != null ) remove( visual );
 		 
-		      if ( control != null ) 
-		         c.remove( control );
+		      if ( control != null ) remove( control );
 		  }
 	}
 	
